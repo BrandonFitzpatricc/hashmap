@@ -88,36 +88,6 @@ class Bucket {
     }
     return arr;
   }
-
-  // toKeyArray() {
-  //   let arr = [];
-  //   let currentNode = this.#head;
-  //   while (currentNode !== null) {
-  //     arr.push(currentNode.entry.key);
-  //     currentNode = currentNode.nextNode;
-  //   }
-  //   return arr;
-  // }
-
-  // toValueArray() {
-  //   let arr = [];
-  //   let currentNode = this.#head;
-  //   while (currentNode !== null) {
-  //     arr.push(currentNode.entry.key);
-  //     currentNode = currentNode.nextNode;
-  //   }
-  //   return arr;
-  // }
-
-  // toEntryArray() {
-  //   let arr = [];
-  //   let currentNode = this.#head;
-  //   while (currentNode !== null) {
-  //     arr.push([currentNode.entry.key, currentNode.entry.value]);
-  //     currentNode = currentNode.nextNode;
-  //   }
-  //   return arr;
-  // }
 }
 
 export { Bucket };
