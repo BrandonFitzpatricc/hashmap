@@ -76,7 +76,7 @@ class HashMap {
       throw new Error("Trying to access index out of bounds");
     }
     const bucket = this.#buckets[index];
-    bucket.removeEntry(key);
+    return bucket.removeEntry(key);
   }
 
   length() {

@@ -45,7 +45,7 @@ test("hasKey returns false if the key is not found", () => {
 test("entry 2 is successfully removed from a populated hashmap", () => {
   const map = new HashMap();
   initializeEntries(map, 3);
-  map.removeEntry("key2");
+  expect(map.removeEntry("key2")).toBe(true);
   expect(map.entries()).toEqual([
     ["key1", "value1"],
     ["key3", "value3"],
