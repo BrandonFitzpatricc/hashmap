@@ -1,4 +1,4 @@
-import { Node } from "./node";
+import { Node } from "./node.js";
 
 class Bucket {
   #head;
@@ -7,12 +7,17 @@ class Bucket {
     this.#head = null;
   }
 
-  append(entry) {
+  insert(entry) {
     if (this.#head === null) {
       this.#head = new Node(entry);
     } else {
       let currentNode = this.#head;
       while (currentNode.nextNode !== null) {
+        // Entries with duplicate keys are not allowed and will be overwritten.
+        if (currentNode.nextNode.entry.key === entry.key) {
+          currentNode.nextNode = new Node(entry, currentNode.nextNode.nextNode);
+          return;
+        }
         currentNode = currentNode.nextNode;
       }
       currentNode.nextNode = new Node(entry);
