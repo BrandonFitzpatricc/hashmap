@@ -43,6 +43,13 @@ class HashMap {
     return bucket.findValue(key);
   }
 
+  hasKey(key) {
+    for (const bucket of this.#buckets) {
+      if (bucket.hasKey(key)) return true;
+    }
+    return false;
+  }
+
   entries() {
     const entryArray = [];
     this.#buckets.forEach((bucket) => {
