@@ -51,3 +51,21 @@ test("entry 2 is successfully removed from a populated hashmap", () => {
     ["key3", "value3"],
   ]);
 });
+
+test("length is successfully returned for a populated hashmap", () => {
+  const map = new HashMap();
+  initializeEntries(map, 10);
+  expect(map.length()).toBe(10);
+});
+
+test("length is 0 for an empty hashmap", () => {
+  expect(new HashMap().length()).toBe(0);
+});
+
+test("clear successfully clears a populated hashmap", () => {
+  const map = new HashMap();
+  initializeEntries(map, 10);
+  map.clear();
+  expect(map.length()).toBe(0);
+  expect(map.entries()).toEqual([]);
+});

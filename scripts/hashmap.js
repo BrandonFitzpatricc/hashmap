@@ -61,6 +61,20 @@ class HashMap {
     bucket.removeEntry(key);
   }
 
+  length() {
+    let count = 0;
+    this.#buckets.forEach((bucket) => {
+      count += bucket.size();
+    });
+    return count;
+  }
+
+  clear() {
+    this.#buckets.forEach((bucket) => {
+      bucket.removeAll();
+    });
+  }
+
   entries() {
     const entryArray = [];
     this.#buckets.forEach((bucket) => {
