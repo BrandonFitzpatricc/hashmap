@@ -20,7 +20,8 @@ class Bucket {
       while (currentNode.nextNode !== null) {
         // Entries with duplicate keys are not allowed and will be overwritten.
         if (currentNode.nextNode.entry.key === entry.key) {
-          currentNode.nextNode = new Node(entry, currentNode.nextNode.nextNode);
+          const nodeBeingReplaced = currentNode.nextNode;
+          currentNode.nextNode = new Node(entry, nodeBeingReplaced.nextNode);
           return;
         }
         currentNode = currentNode.nextNode;
@@ -67,7 +68,8 @@ class Bucket {
       let currentNode = this.#head;
       while (currentNode.nextNode !== null) {
         if (currentNode.nextNode.entry.key === key) {
-          currentNode.nextNode = currentNode.nextNode.nextNode;
+          const nodeBeingRemoved = currentNode.nextNode;
+          currentNode.nextNode = nodeBeingRemoved.nextNode;
           return true;
         }
         currentNode = currentNode.nextNode;
