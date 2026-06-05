@@ -11,6 +11,11 @@ class Bucket {
     if (this.#head === null) {
       this.#head = new Node(entry);
     } else {
+      if (this.#head.entry.key === entry.key) {
+        this.#head = new Node(entry, this.#head.nextNode);
+        return;
+      }
+
       let currentNode = this.#head;
       while (currentNode.nextNode !== null) {
         // Entries with duplicate keys are not allowed and will be overwritten.

@@ -116,9 +116,6 @@ class HashMap {
     });
     return entryArray;
   }
-
-  // LAST THING YOU DID: REWRITE ADD METHOD IN BUCKET TO HANDLE DUPLICATES
-  // NEXT: WRITE ENTRIES METHOD AND USE IT TO TEST SET METHOD
 }
 
 export { HashMap };

@@ -19,7 +19,7 @@ test("multiple values are successfully inserted to an empty bucket", () => {
   ]);
 });
 
-test("if an entry with an existing key is inserted, then it'll replace the previous entry with that key", () => {
+test("if an entry with an existing key in the middle of a populated bucket is inserted into it, then it'll replace the previous entry with that key", () => {
   const bucket = new Bucket();
   bucket.insert(new Entry("key1", "value1"));
   bucket.insert(new Entry("key2", "value2"));
@@ -29,6 +29,32 @@ test("if an entry with an existing key is inserted, then it'll replace the previ
     ["key1", "value1"],
     ["key2", "new value"],
     ["key3", "value3"],
+  ]);
+});
+
+test("if an entry with an existing key at the beginning of a populated bucket is inserted into it, then it'll replace the previous entry with that key", () => {
+  const bucket = new Bucket();
+  bucket.insert(new Entry("key1", "value1"));
+  bucket.insert(new Entry("key2", "value2"));
+  bucket.insert(new Entry("key3", "value3"));
+  bucket.insert(new Entry("key1", "new value"));
+  expect(bucket.toArray("entry")).toEqual([
+    ["key1", "new value"],
+    ["key2", "value2"],
+    ["key3", "value3"],
+  ]);
+});
+
+test("if an entry with an existing key at the end of a populated bucket is inserted into it, then it'll replace the previous entry with that key", () => {
+  const bucket = new Bucket();
+  bucket.insert(new Entry("key1", "value1"));
+  bucket.insert(new Entry("key2", "value2"));
+  bucket.insert(new Entry("key3", "value3"));
+  bucket.insert(new Entry("key3", "new value"));
+  expect(bucket.toArray("entry")).toEqual([
+    ["key1", "value1"],
+    ["key2", "value2"],
+    ["key3", "new value"],
   ]);
 });
 

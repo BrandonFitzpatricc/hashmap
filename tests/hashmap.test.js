@@ -18,6 +18,17 @@ test("entries are successfully added to a hashmap", () => {
   ]);
 });
 
+test("entries with duplicate keys are overwritten", () => {
+  const map = new HashMap();
+  initializeEntries(map, 3);
+  map.setEntry("key2", "new value");
+  expect(map.entries()).toEqual([
+    ["key1", "value1"],
+    ["key2", "new value"],
+    ["key3", "value3"],
+  ]);
+});
+
 test("value1 is successfully retrieved from a populated hashmap", () => {
   const map = new HashMap();
   initializeEntries(map, 10);
