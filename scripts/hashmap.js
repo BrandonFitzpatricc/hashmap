@@ -52,6 +52,15 @@ class HashMap {
     return bucket.hasKey(key);
   }
 
+  removeEntry(key) {
+    const index = this.#hash(key);
+    if (index < 0 || index >= this.#buckets.length) {
+      throw new Error("Trying to access index out of bounds");
+    }
+    const bucket = this.#buckets[index];
+    bucket.removeEntry(key);
+  }
+
   entries() {
     const entryArray = [];
     this.#buckets.forEach((bucket) => {
