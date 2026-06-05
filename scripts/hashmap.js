@@ -44,10 +44,12 @@ class HashMap {
   }
 
   hasKey(key) {
-    for (const bucket of this.#buckets) {
-      if (bucket.hasKey(key)) return true;
+    const index = this.#hash(key);
+    if (index < 0 || index >= this.#buckets.length) {
+      throw new Error("Trying to access index out of bounds");
     }
-    return false;
+    const bucket = this.#buckets[index];
+    return bucket.hasKey(key);
   }
 
   entries() {
