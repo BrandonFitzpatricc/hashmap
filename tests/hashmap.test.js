@@ -106,3 +106,24 @@ test("all three array conversion methods return an empty array when called from 
   expect(map.values()).toEqual([]);
   expect(map.entries()).toEqual([]);
 });
+
+test("hashmap successfully grows upon exceeding its load factor", () => {
+  const map = new HashMap();
+  initializeEntries(map, 13);
+  expect(map.capacity).toBe(32);
+  expect(map.entries()).toEqual([
+    ["key12", "value12"],
+    ["key13", "value13"],
+    ["key1", "value1"],
+    ["key2", "value2"],
+    ["key3", "value3"],
+    ["key4", "value4"],
+    ["key5", "value5"],
+    ["key6", "value6"],
+    ["key7", "value7"],
+    ["key8", "value8"],
+    ["key9", "value9"],
+    ["key10", "value10"],
+    ["key11", "value11"],
+  ]);
+});

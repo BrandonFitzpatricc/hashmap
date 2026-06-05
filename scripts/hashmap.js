@@ -8,7 +8,11 @@ class HashMap {
 
   constructor() {
     this.#loadFactor = 0.75;
-    this.#capacity = 16;
+    this.#initializeMap(16);
+  }
+
+  #initializeMap(capacity) {
+    this.#capacity = capacity;
     for (let i = 0; i < this.#capacity; i++) {
       this.#buckets.push(new Bucket());
     }
@@ -25,6 +29,19 @@ class HashMap {
     return hashCode;
   }
 
+  #growMap() {
+    const entries = this.entries();
+    this.#buckets = [];
+    this.#initializeMap(this.#capacity * 2);
+    entries.forEach((entry) => {
+      this.setEntry(entry[0], entry[1]);
+    });
+  }
+
+  get capacity() {
+    return this.#capacity;
+  }
+
   setEntry(key, value) {
     const index = this.#hash(key);
     if (index < 0 || index >= this.#buckets.length) {
@@ -32,6 +49,7 @@ class HashMap {
     }
     const bucket = this.#buckets[index];
     bucket.insert(new Entry(key, value));
+    if (this.length() > this.#capacity * this.#loadFactor) this.#growMap();
   }
 
   getValue(key) {
