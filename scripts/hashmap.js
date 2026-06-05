@@ -75,6 +75,22 @@ class HashMap {
     });
   }
 
+  keys() {
+    const keysArray = [];
+    this.#buckets.forEach((bucket) => {
+      keysArray.push(...bucket.toArray("key"));
+    });
+    return keysArray;
+  }
+
+  values() {
+    const valuesArray = [];
+    this.#buckets.forEach((bucket) => {
+      valuesArray.push(...bucket.toArray("value"));
+    });
+    return valuesArray;
+  }
+
   entries() {
     const entryArray = [];
     this.#buckets.forEach((bucket) => {

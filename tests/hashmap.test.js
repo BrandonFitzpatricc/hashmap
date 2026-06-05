@@ -69,3 +69,40 @@ test("clear successfully clears a populated hashmap", () => {
   expect(map.length()).toBe(0);
   expect(map.entries()).toEqual([]);
 });
+
+test("keys returns an array of keys for a populated hashmap", () => {
+  const map = new HashMap();
+  initializeEntries(map, 5);
+  expect(map.keys()).toEqual(["key1", "key2", "key3", "key4", "key5"]);
+});
+
+test("values returns an array of values for a populated hashmap", () => {
+  const map = new HashMap();
+  initializeEntries(map, 5);
+  expect(map.values()).toEqual([
+    "value1",
+    "value2",
+    "value3",
+    "value4",
+    "value5",
+  ]);
+});
+
+test("entries returns an array of entries for a populated hashmap", () => {
+  const map = new HashMap();
+  initializeEntries(map, 5);
+  expect(map.entries()).toEqual([
+    ["key1", "value1"],
+    ["key2", "value2"],
+    ["key3", "value3"],
+    ["key4", "value4"],
+    ["key5", "value5"],
+  ]);
+});
+
+test("all three array conversion methods return an empty array when called from an empty hashmap", () => {
+  const map = new HashMap();
+  expect(map.keys()).toEqual([]);
+  expect(map.values()).toEqual([]);
+  expect(map.entries()).toEqual([]);
+});
